@@ -34,11 +34,11 @@ public class ChefController {
         return chefService.createChef(chefDTO);
     }
 
-//    @PutMapping("/{id}")
-//    public Chef updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
-//    {
-//        return chefService.updateChef(id, chefDTO);
-//    }
+    @PutMapping("/{id}")
+    public Chef updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
+    {
+        return chefService.updateChef(id, chefDTO);
+    }
 
     @DeleteMapping("/{id}")
     public String deleteChef(@PathVariable("id") long id)

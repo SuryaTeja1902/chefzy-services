@@ -30,15 +30,15 @@ public class ChefService {
 
     }
 
-//    public Chef updateChef(Long id, ChefDTO chefDTO)
-//    {
-//
-//
-//        Chef chef = new Chef(chefDTO);
-////        chef.setId(id);
-//        return chefRepo.save(chef);
-//
-//    }
+    public Chef updateChef(Long id, ChefDTO chefDTO)
+    {
+
+
+        Chef chef = new Chef(chefDTO);
+        chef.setId(id);
+        return chefRepo.save(chef);
+
+    }
 
     public String deleteChef(long id)
     {
