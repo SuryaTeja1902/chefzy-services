@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ChefRepo extends JpaRepository<Chef, Long> {
 
-
 }
