@@ -3,17 +3,21 @@ package com.chefzy.chefmicroservice.service;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
 import com.chefzy.chefmicroservice.repository.ChefRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class ChefService {
 
-    @Autowired
-    ChefRepo chefRepo;
+    private final ChefRepo chefRepo;
+
+    public ChefService(ChefRepo chefRepo) {
+        this.chefRepo = chefRepo;
+    }
 
     public List<Chef> getAllChefs() {
         return chefRepo.findAll();
@@ -26,23 +30,19 @@ public class ChefService {
     public Chef createChef(ChefDTO chefDTO)
     {
         Chef chef = new Chef(chefDTO);
+        log.info("Chef created with  ID - {}",chef.getId());
         return chefRepo.save(chef);
-
     }
 
     public Chef updateChef(Long id, ChefDTO chefDTO)
     {
-
-
         Chef chef = new Chef(chefDTO);
         chef.setId(id);
         return chefRepo.save(chef);
-
     }
 
     public String deleteChef(long id)
     {
-
         chefRepo.deleteById(id);
         return "Chef deleted";
     }
