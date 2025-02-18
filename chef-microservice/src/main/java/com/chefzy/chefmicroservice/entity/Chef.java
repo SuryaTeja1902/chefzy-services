@@ -1,11 +1,8 @@
 package com.chefzy.chefmicroservice.entity;
 
-
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
 
 @Entity
 @Table(name = "chefs")
@@ -37,7 +34,6 @@ public class Chef {
         this.availability = chefDTO.isAvailability();
 
     }
-
 
     public Chef() {
 
