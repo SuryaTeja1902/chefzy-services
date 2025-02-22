@@ -6,6 +6,7 @@ import com.chefzy.chefmicroservice.dto.ChefResponseDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
 import com.chefzy.chefmicroservice.mapper.ChefMapper;
 import com.chefzy.chefmicroservice.service.ChefService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.xml.bind.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -38,13 +39,13 @@ public class ChefController implements ChefAPI {
 
     @Override
     public ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO) throws ValidationException {
-        log.info("Received new request to add chef");
-        return ResponseEntity.status(HttpStatus.CREATED).body(ChefMapper.mapToChefResponseDTO(chefService.createChef(chefDTO)));
+        Chef chef = chefService.createChef(chefDTO);
+        log.info("Chef created with  ID - {}",chef.getId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(ChefMapper.mapToChefResponseDTO(chef));
     }
 
     @Override
-    public ResponseEntity<Void> updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
-    {
+    public ResponseEntity<Void> updateChef(@PathVariable("id") long id, @RequestBody ChefDTO chefDTO) throws JsonProcessingException {
         log.info("Received request to update chef");
         chefService.updateChef(id, chefDTO);
         return ResponseEntity.ok().build();

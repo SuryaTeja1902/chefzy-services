@@ -23,7 +23,7 @@ public interface ChefAPI{
     ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO) throws ValidationException, JsonProcessingException;
 
     @PutMapping("/{id}")
-    ResponseEntity<Void> updateChef(@PathVariable("id") long id, ChefDTO chefDTO);
+    ResponseEntity<Void> updateChef(@PathVariable("id") long id, ChefDTO chefDTO) throws JsonProcessingException;
 
     @DeleteMapping("/{id}")
     String deleteChef(@PathVariable("id") long id);

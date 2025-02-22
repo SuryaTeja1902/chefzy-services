@@ -41,4 +41,44 @@ public class ChefMapper {
 
          return chef;
      }
+
+     public static void updateChefFromDTO(Chef existingChef, ChefDTO chefDTO) throws JsonProcessingException {
+
+         if(chefDTO.getName() != null)
+         {
+             existingChef.setName(chefDTO.getName());
+         }
+         if(chefDTO.getEmail() != null)
+         {
+             existingChef.setEmail(chefDTO.getEmail());
+         }
+         if(chefDTO.getPhone() != null)
+         {
+             existingChef.setPhone(chefDTO.getPhone());
+         }
+         if (chefDTO.isAvailable() != existingChef.isAvailable())
+         {
+             existingChef.setAvailable(chefDTO.isAvailable());
+         }
+         if(chefDTO.getExperience() != 0)
+         {
+             existingChef.setExperience(chefDTO.getExperience());
+         }
+         if(chefDTO.getCuisines() != null)
+         {
+             existingChef.setCuisines(chefDTO.getCuisines());
+         }
+         if(chefDTO.getLanguages() != null)
+         {
+             existingChef.setLanguages(chefDTO.getLanguages());
+         }
+         if(chefDTO.getPricing() != 0)
+         {
+             existingChef.setPricing(chefDTO.getPricing());
+         }
+         if(chefDTO.getRating() != 0)
+         {
+             existingChef.setRating(chefDTO.getRating());
+         }
+     }
 }

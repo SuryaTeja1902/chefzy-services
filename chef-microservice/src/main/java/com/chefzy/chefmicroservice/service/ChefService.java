@@ -5,6 +5,7 @@ import com.chefzy.chefmicroservice.entity.Chef;
 import com.chefzy.chefmicroservice.mapper.ChefMapper;
 import com.chefzy.chefmicroservice.repository.ChefRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.transaction.Transactional;
 import jakarta.xml.bind.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class ChefService {
         return chefRepo.findById(id);
     }
 
+    @Transactional
     public Chef createChef(ChefDTO chefDTO) throws ValidationException {
         Chef chef;
         try {
@@ -40,17 +42,17 @@ public class ChefService {
             log.error(exception.getMessage());
             throw new ValidationException("Invalid Chef data");
         }
-        log.info("Chef created with  ID - {}",chef.getId());
         return chefRepo.save(chef);
     }
 
-    public Chef updateChef(Long id, ChefDTO chefDTO)
-    {
-        Chef chef = new Chef(chefDTO);
-        chef.setId(id);
-        return chefRepo.save(chef);
+    @Transactional
+    public Chef updateChef(Long id, ChefDTO chefDTO) throws JsonProcessingException {
+        Chef existingchef  = chefRepo.findById(id).orElseThrow(() -> new RuntimeException("Chef with ID " + id + " not found"));
+        ChefMapper.updateChefFromDTO(existingchef, chefDTO);
+        return chefRepo.save(existingchef);
     }
 
+    @Transactional
     public String deleteChef(long id)
     {
         chefRepo.deleteById(id);
