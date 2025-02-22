@@ -1,5 +1,6 @@
 package com.chefzy.chefmicroservice.controller;
 
+import com.chefzy.chefmicroservice.api.ChefAPI;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
 import com.chefzy.chefmicroservice.service.ChefService;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/chefs")
 @Slf4j
-public class ChefController {
+public class ChefController implements ChefAPI {
 
     private final ChefService chefService;
 
@@ -20,31 +21,31 @@ public class ChefController {
         this.chefService = chefService;
     }
 
-    @GetMapping("/")
+    @Override
     public List<Chef> getAllChefs() {
         return chefService.getAllChefs();
     }
 
-    @GetMapping("/{id}")
+    @Override
     public Optional<Optional<Chef>> getChefById(@PathVariable("id") long id) {
         return Optional.ofNullable(chefService.getChefById(id));
     }
 
-    @PostMapping("/")
+    @Override
     public Chef createChef(@RequestBody ChefDTO chefDTO)
     {
         log.info("Received new request to add chef");
         return chefService.createChef(chefDTO);
     }
 
-    @PutMapping("/{id}")
+    @Override
     public Chef updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
     {
         log.info("Received request to update chef");
         return chefService.updateChef(id, chefDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public String deleteChef(@PathVariable("id") long id)
     {
         return chefService.deleteChef(id);
