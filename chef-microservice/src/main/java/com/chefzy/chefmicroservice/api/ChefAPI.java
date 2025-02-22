@@ -1,7 +1,11 @@
 package com.chefzy.chefmicroservice.api;
 
 import com.chefzy.chefmicroservice.dto.ChefDTO;
+import com.chefzy.chefmicroservice.dto.ChefResponseDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.xml.bind.ValidationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,19 +14,17 @@ import java.util.Optional;
 public interface ChefAPI{
 
     @GetMapping("/")
-    public List<Chef> getAllChefs();
+    List<Chef> getAllChefs();
 
     @GetMapping("/{id}")
-    public Optional<Optional<Chef>> getChefById(@PathVariable("id") long id);
+    Optional<Optional<Chef>> getChefById(@PathVariable("id") long id);
 
     @PostMapping("/")
-    public Chef createChef(@RequestBody ChefDTO chefDTO);
-
+    ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO) throws ValidationException, JsonProcessingException;
 
     @PutMapping("/{id}")
-    public Chef updateChef(@PathVariable("id") long id, ChefDTO chefDTO);
-
+    ResponseEntity<Void> updateChef(@PathVariable("id") long id, ChefDTO chefDTO);
 
     @DeleteMapping("/{id}")
-    public String deleteChef(@PathVariable("id") long id);
+    String deleteChef(@PathVariable("id") long id);
 }

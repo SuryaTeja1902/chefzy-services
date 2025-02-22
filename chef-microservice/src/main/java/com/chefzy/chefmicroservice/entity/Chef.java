@@ -3,13 +3,9 @@ package com.chefzy.chefmicroservice.entity;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "chefs")
-@Setter
-@Getter
 @Data
 public class Chef {
 
@@ -24,7 +20,7 @@ public class Chef {
     private String languages;
     private long pricing;
     private double rating;
-    private boolean availability;
+    private boolean isAvailable;
 
     public Chef(ChefDTO chefDTO) {
         this.name = chefDTO.getName();
@@ -35,7 +31,7 @@ public class Chef {
         this.languages = chefDTO.getLanguages();
         this.pricing = chefDTO.getPricing();
         this.rating = chefDTO.getRating();
-        this.availability = chefDTO.isAvailability();
+        this.isAvailable = chefDTO.isAvailable();
 
     }
 

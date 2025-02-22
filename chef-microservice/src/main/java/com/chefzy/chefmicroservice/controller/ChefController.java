@@ -4,7 +4,9 @@ import com.chefzy.chefmicroservice.api.ChefAPI;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import com.chefzy.chefmicroservice.dto.ChefResponseDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
+import com.chefzy.chefmicroservice.mapper.ChefMapper;
 import com.chefzy.chefmicroservice.service.ChefService;
+import jakarta.xml.bind.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,23 +37,23 @@ public class ChefController implements ChefAPI {
     }
 
     @Override
-    public ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO)
-    {
+    public ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO) throws ValidationException {
         log.info("Received new request to add chef");
-        return ResponseEntity.status(HttpStatus.CREATED);
-        chefService.createChef(chefDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ChefMapper.mapToChefResponseDTO(chefService.createChef(chefDTO)));
     }
 
     @Override
-    public Chef updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
+    public ResponseEntity<Void> updateChef(@PathVariable("id") long id, ChefDTO chefDTO)
     {
         log.info("Received request to update chef");
-        return chefService.updateChef(id, chefDTO);
+        chefService.updateChef(id, chefDTO);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public String deleteChef(@PathVariable("id") long id)
     {
+        log.info("Received request to delete chef");
         return chefService.deleteChef(id);
     }
 }
