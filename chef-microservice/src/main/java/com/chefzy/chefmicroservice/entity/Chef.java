@@ -3,9 +3,13 @@ package com.chefzy.chefmicroservice.entity;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "chefs")
+@Setter
+@Getter
 @Data
 public class Chef {
 
