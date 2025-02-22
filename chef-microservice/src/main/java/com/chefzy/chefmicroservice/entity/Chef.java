@@ -20,7 +20,7 @@ public class Chef {
     private String languages;
     private long pricing;
     private double rating;
-    private boolean availability;
+    private boolean isAvailable;
 
     public Chef(ChefDTO chefDTO) {
         this.name = chefDTO.getName();
@@ -31,7 +31,7 @@ public class Chef {
         this.languages = chefDTO.getLanguages();
         this.pricing = chefDTO.getPricing();
         this.rating = chefDTO.getRating();
-        this.availability = chefDTO.isAvailability();
+        this.isAvailable = chefDTO.isAvailable();
 
     }
 

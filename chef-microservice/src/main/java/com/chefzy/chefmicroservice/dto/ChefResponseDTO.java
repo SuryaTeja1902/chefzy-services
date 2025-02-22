@@ -1,12 +1,10 @@
 package com.chefzy.chefmicroservice.dto;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
-public class ChefDTO {
-
+public class ChefResponseDTO {
+    private long id;
     private String name;
     private String email;
     private String phone;
@@ -16,5 +14,4 @@ public class ChefDTO {
     private long pricing;
     private double rating;
     private boolean isAvailable;
-
 }
