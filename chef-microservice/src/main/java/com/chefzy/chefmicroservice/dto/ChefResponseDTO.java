@@ -13,5 +13,5 @@ public class ChefResponseDTO {
     private String languages;
     private long pricing;
     private double rating;
-    private boolean availability;
+    private boolean isAvailable;
 }
