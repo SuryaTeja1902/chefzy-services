@@ -2,9 +2,12 @@ package com.chefzy.chefmicroservice.controller;
 
 import com.chefzy.chefmicroservice.api.ChefAPI;
 import com.chefzy.chefmicroservice.dto.ChefDTO;
+import com.chefzy.chefmicroservice.dto.ChefResponseDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
 import com.chefzy.chefmicroservice.service.ChefService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +35,11 @@ public class ChefController implements ChefAPI {
     }
 
     @Override
-    public Chef createChef(@RequestBody ChefDTO chefDTO)
+    public ResponseEntity<ChefResponseDTO> createChef(@RequestBody ChefDTO chefDTO)
     {
         log.info("Received new request to add chef");
-        return chefService.createChef(chefDTO);
+        return ResponseEntity.status(HttpStatus.CREATED);
+        chefService.createChef(chefDTO));
     }
 
     @Override
