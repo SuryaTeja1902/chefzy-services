@@ -23,10 +23,12 @@ public class ChefService {
         this.chefRepo = chefRepo;
     }
 
+    @Transactional
     public List<Chef> getAllChefs() {
         return chefRepo.findAll();
     }
 
+    @Transactional
     public Optional<Chef> getChefById(Long id) {
         return chefRepo.findById(id);
     }
