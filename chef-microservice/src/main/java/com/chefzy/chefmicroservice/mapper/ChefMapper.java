@@ -42,7 +42,7 @@ public class ChefMapper {
          return chef;
      }
 
-     public static void updateChefFromDTO(Chef existingChef, ChefDTO chefDTO) throws JsonProcessingException {
+     public static void updateChefFromDTO(Chef existingChef, ChefDTO chefDTO) {
 
          if(chefDTO.getName() != null)
          {

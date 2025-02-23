@@ -2,10 +2,12 @@ package com.chefzy.chefmicroservice.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "chefs")
 @Data
+@NoArgsConstructor
 public class Chef {
 
     @Id
@@ -20,10 +22,4 @@ public class Chef {
     private long pricing;
     private double rating;
     private boolean isAvailable;
-
-
-
-    public Chef() {
-
-    }
 }
