@@ -1,6 +1,5 @@
 package com.chefzy.chefmicroservice.entity;
 
-import com.chefzy.chefmicroservice.dto.ChefDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +9,7 @@ import lombok.Data;
 public class Chef {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -22,18 +21,7 @@ public class Chef {
     private double rating;
     private boolean isAvailable;
 
-    public Chef(ChefDTO chefDTO) {
-        this.name = chefDTO.getName();
-        this.email = chefDTO.getEmail();
-        this.phone = chefDTO.getPhone();
-        this.experience = chefDTO.getExperience();
-        this.cuisines = chefDTO.getCuisines();
-        this.languages = chefDTO.getLanguages();
-        this.pricing = chefDTO.getPricing();
-        this.rating = chefDTO.getRating();
-        this.isAvailable = chefDTO.isAvailable();
 
-    }
 
     public Chef() {
 
