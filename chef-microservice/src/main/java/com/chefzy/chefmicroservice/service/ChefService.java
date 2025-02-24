@@ -14,6 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for managing chef-related operations.
+ * <p>
+ * This class handles the business logic for creating, retrieving, updating, and deleting chefs.
+ * It interacts with the ChefRepo for database operations and uses ChefMapper for data transformations.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor

@@ -5,6 +5,12 @@ import com.chefzy.chefmicroservice.dto.ChefResponseDTO;
 import com.chefzy.chefmicroservice.entity.Chef;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+/**
+ * Mapper class for transforming Chef entities and DTOs.
+ * <p>
+ * This class provides methods to map between Chef entities and ChefDTO/ChefResponseDTO objects.
+ * It handles the data transformation logic required for these mappings.
+ */
 public class ChefMapper {
 
     /**

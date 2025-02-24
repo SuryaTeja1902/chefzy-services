@@ -17,6 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller class for managing chef-related operations.
+ * <p>
+ * This class handles HTTP requests for creating, retrieving, updating, and deleting chefs.
+ * It delegates the actual processing to the ChefService and uses ChefMapper for data transformations.
+ * The class is annotated with @RestController to indicate that it is a Spring MVC controller.
+ * It also uses @RequestMapping to define the base URL for all endpoints in this controller.
+ */
 @RestController
 @RequestMapping("/api/v1/chefs")
 @Slf4j
