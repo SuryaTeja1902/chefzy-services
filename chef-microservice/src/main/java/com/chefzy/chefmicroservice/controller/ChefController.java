@@ -28,6 +28,14 @@ public class ChefController implements ChefAPI {
         this.chefService = chefService;
     }
 
+    /**
+     * Retrieves a list of all chefs.
+     *
+     * This method handles the HTTP GET request to retrieve all chefs from the database.
+     * It logs the request and delegates the retrieval process to the ChefService.
+     *
+     * @return a list of Chef objects representing all chefs in the database.
+     */
     @Override
     public List<Chef> getAllChefs() {
         log.info("Received request to get all chefs");
