@@ -48,11 +48,10 @@ public class ChefService {
      *
      * @param id the ID of the chef to retrieve.
      * @return an Optional containing the Chef object if found, or an empty Optional if not found.
-     * @throws ValidationException if the chef ID is invalid or not found.
      */
     @Transactional(readOnly = true)
-    public Optional<Chef> getChefById(Long id) throws ValidationException {
-        chefRepo.findById(id).orElseThrow(() -> new ValidationException("Chef with ID " + id + " not found"));
+    public Optional<Chef> getChefById(Long id){
+        chefRepo.findById(id).orElseThrow(() -> new RuntimeException("Chef with ID " + id + " not found"));
         return chefRepo.findById(id);
     }
 

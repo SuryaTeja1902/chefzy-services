@@ -51,26 +51,29 @@ public class ChefController implements ChefAPI {
     }
 
     /**
-     * Retrieves a chef by their ID.
+     * Retrieves the chef information by ID.
      * <p>
-     * This method handles the HTTP GET request to retrieve a chef's information by their ID.
-     * It logs the request, attempts to retrieve the chef from the ChefService, and handles any validation exceptions.
+     * This method handles the HTTP GET request to retrieve a chef by their ID.
+     * It logs the request and delegates the retrieval process to the ChefService.
+     * If the chef is found, it returns the chef's information with an HTTP 200 status.
+     * If the chef is not found, it returns an HTTP 404 status.
+     * In case of validation errors, it returns an HTTP 400 status.
+     * For unexpected errors, it returns an HTTP 500 status.
      *
      * @param id the ID of the chef to retrieve.
-     * @return an Optional containing an Optional of the Chef object if found,
-     * or an empty Optional if not found or if a validation exception occurs.
-     * @throws ValidationException if the chef ID is invalid.
+     * @return a ResponseEntity containing the Chef object if found, or an appropriate HTTP status code.
      */
     @Override
-    public Optional<Optional<Chef>> getChefById(long id) throws ValidationException {
+    public ResponseEntity<Chef> getChefById(long id) {
         log.info("Received request to get chef info with ID - {}", id);
         try {
-            chefService.getChefById(id);
-        } catch (ValidationException e) {
-            log.error(e.getMessage());
-            return Optional.empty();
+            Optional<Chef> caterer = chefService.getChefById(id);
+            return ResponseEntity.ok(caterer.get());
         }
-        return Optional.ofNullable(chefService.getChefById(id));
+        catch (RuntimeException ex) {
+            log.error("Caterer with ID - {} NOT found", id);
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**

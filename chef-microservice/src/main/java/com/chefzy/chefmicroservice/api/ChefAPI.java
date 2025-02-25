@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ChefAPI{
 
@@ -18,7 +17,7 @@ public interface ChefAPI{
     List<Chef> getAllChefs();
 
     @GetMapping("/{id}")
-    Optional<Optional<Chef>> getChefById(@PathVariable("id") long id) throws ValidationException;
+    ResponseEntity<Chef> getChefById(@PathVariable("id") long id) throws ValidationException;
 
     @PostMapping("/")
     ResponseEntity<ChefResponseDTO> createChef(@RequestBody @Validated ChefDTO chefDTO) throws ValidationException, JsonProcessingException;

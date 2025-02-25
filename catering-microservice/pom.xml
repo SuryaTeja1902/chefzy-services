@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.chefzy</groupId>
-    <artifactId>chef-microservice</artifactId>
+    <artifactId>catering-microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>chef-microservice</name>
-    <description>chef-microservice</description>
+    <name>catering-microservice</name>
+    <description>catering-microservice</description>
     <url/>
     <licenses>
         <license/>
