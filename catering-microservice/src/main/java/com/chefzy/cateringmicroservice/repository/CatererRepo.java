@@ -12,6 +12,4 @@ public interface CatererRepo extends JpaRepository<Caterer,Long> {
 
     @Query("select c from Caterer c WHERE c.eventType =?1")
     List<Caterer> findAllCaterersByEvent(String eventType);
-
-
 }
