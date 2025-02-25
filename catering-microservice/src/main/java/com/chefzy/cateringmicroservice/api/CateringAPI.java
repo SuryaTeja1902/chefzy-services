@@ -1,9 +1,12 @@
 package com.chefzy.cateringmicroservice.api;
 
 import com.chefzy.cateringmicroservice.dto.CatererDTO;
+import com.chefzy.cateringmicroservice.dto.CatererResponseDTO;
 import com.chefzy.cateringmicroservice.entity.Caterer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.xml.bind.ValidationException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +24,9 @@ public interface CateringAPI {
 
 
     @PostMapping("/")
-    Caterer createCaterer(@RequestBody CatererDTO catererDTO) throws ValidationException;
+    ResponseEntity<CatererResponseDTO> createCaterer(@RequestBody @Validated CatererDTO catererDTO) throws ValidationException;
     @PutMapping("/{id}")
-    Caterer updateCaterer(@PathVariable("id") long id, @RequestBody CatererDTO catererDTO) throws JsonProcessingException;
+    ResponseEntity<String> updateCaterer(@PathVariable("id") long id, @RequestBody @Validated CatererDTO catererDTO) throws JsonProcessingException, ValidationException;
 
     @DeleteMapping("/{id}")
     void deleteCaterer(@PathVariable("id") long id);
