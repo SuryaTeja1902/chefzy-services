@@ -10,24 +10,23 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CateringAPI {
     @GetMapping("/")
     List<Caterer> getAllCaterers();
 
     @GetMapping("/{id}")
-    Optional<Caterer> getCatererById(@PathVariable("id") long id) throws ValidationException;
+    ResponseEntity<Caterer> getCatererById(@PathVariable("id") long id) throws ValidationException;
 
     @GetMapping("/event/{eventType}")
-    List<Caterer> getCatererByEvent(@PathVariable("eventType") String eventType);
-
+    ResponseEntity<List<Caterer>> getCatererByEvent(@PathVariable("eventType") String eventType);
 
     @PostMapping("/")
     ResponseEntity<CatererResponseDTO> createCaterer(@RequestBody @Validated CatererDTO catererDTO) throws ValidationException;
+
     @PutMapping("/{id}")
     ResponseEntity<String> updateCaterer(@PathVariable("id") long id, @RequestBody @Validated CatererDTO catererDTO) throws JsonProcessingException, ValidationException;
 
     @DeleteMapping("/{id}")
-    void deleteCaterer(@PathVariable("id") long id);
+    ResponseEntity<String> deleteCaterer(@PathVariable("id") long id);
 }
