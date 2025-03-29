@@ -7,6 +7,7 @@ import com.chefzy.booking.enums.BookingStatus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BookingMapper {
 
@@ -22,7 +23,7 @@ public class BookingMapper {
         return booking;
     }
 
-    public static BookingResponseDTO mapBookingToBookingDTO(Booking booking) {
+    public static BookingResponseDTO mapBookingToBookingResponseDTO(Booking booking) {
 
         BookingResponseDTO bookingResponseDTO = new BookingResponseDTO();
         bookingResponseDTO.setConsumerId(booking.getConsumerId());
