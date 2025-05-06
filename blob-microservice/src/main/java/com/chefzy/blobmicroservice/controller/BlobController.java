@@ -2,6 +2,7 @@ package com.chefzy.blobmicroservice.controller;
 
 
 import com.chefzy.blobmicroservice.api.BlobAPI;
+import com.chefzy.blobmicroservice.dto.BlobDTO;
 import com.chefzy.blobmicroservice.entity.BlobMetaData;
 import com.chefzy.blobmicroservice.service.BlobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,26 @@ public class BlobController implements BlobAPI {
     private BlobService blobService;
 
     @Override
-    public ResponseEntity<BlobMetaData> upload(MultipartFile file, Long userId, String userType) {
-            BlobMetaData data = BlobService.upload(file,userId,userType);
-            return ResponseEntity.ok(data);
-
+    public ResponseEntity<BlobDTO> upload(MultipartFile file, Long userId, String userType) {
+            BlobMetaData data = blobService.upload(file,userId,userType);
+            return ResponseEntity.ok(BlobDTO.toDTO(data));
     }
 
     @Override
     public ResponseEntity<Resource> download(String fileName) {
-        Resource file = BlobService.download(fileName);
+        Resource file = blobService.download(fileName);
         return ResponseEntity.ok().body(file);
     }
 
     @Override
-    public ResponseEntity<List<BlobMetaData>> getAllFilesByUser(String userType, String userId) {
-        List<BlobMetaData> blob_list = BlobService.getAllFilesByUser(userType,userId);
-        return ResponseEntity.ok().body(blob_list);
+    public ResponseEntity<List<BlobDTO>> getAllFilesByUser(String userType, Long userId) {
+        List<BlobMetaData> blob_list = blobService.getAllFilesByUser(userType,userId);
+        return ResponseEntity.ok().body(BlobDTO.toDTO(blob_list));
     }
 
     @Override
     public ResponseEntity<Void> delete(String fileName) {
-        BlobService.delete(fileName);
+        blobService.delete(fileName);
         return ResponseEntity.noContent().build();
     }
 }
