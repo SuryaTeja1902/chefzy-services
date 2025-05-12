@@ -6,11 +6,13 @@ import com.chefzy.blobmicroservice.dto.BlobDTO;
 import com.chefzy.blobmicroservice.entity.BlobMetaData;
 import com.chefzy.blobmicroservice.service.BlobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.util.List;
 
@@ -28,9 +30,12 @@ public class BlobController implements BlobAPI {
     }
 
     @Override
-    public ResponseEntity<Resource> download(String fileName) {
-        Resource file = blobService.download(fileName);
-        return ResponseEntity.ok().body(file);
+    public ResponseEntity<StreamingResponseBody> download(String fileName) {
+        StreamingResponseBody file = blobService.download(fileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
+                .body(file);
     }
 
     @Override
