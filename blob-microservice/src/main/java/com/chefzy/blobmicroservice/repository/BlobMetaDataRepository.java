@@ -1,6 +1,7 @@
 package com.chefzy.blobmicroservice.repository;
 
 import com.chefzy.blobmicroservice.entity.BlobMetaData;
+import com.chefzy.blobmicroservice.enums.DocumentType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +10,13 @@ import java.util.Optional;
 
 @Repository
 public interface BlobMetaDataRepository extends JpaRepository<BlobMetaData, Long> {
-    void deleteByFileName(String fileName);
+    Optional<BlobMetaData> findByUserTypeAndUserIdAndOriginalFilenameAndDocumentType(
+            String userType,
+            Long userId,
+            String originalFilename,
+            DocumentType documentType
+    );
+    List<BlobMetaData> findByUserTypeAndUserIdAndDocumentType(String userType, Long userId, DocumentType documentType);
 
-    List<BlobMetaData> findByUserTypeAndUserId(String userType, Long userId);
-
-    Optional<BlobMetaData> findByFileName(String fileName);
+    Optional<BlobMetaData> findByObjectKey(String objectKey);
 }
