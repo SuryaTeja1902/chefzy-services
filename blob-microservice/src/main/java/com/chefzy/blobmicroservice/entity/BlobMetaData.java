@@ -1,6 +1,7 @@
 package com.chefzy.blobmicroservice.entity;
 
 
+import com.chefzy.blobmicroservice.enums.DocumentType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,8 @@ public class BlobMetaData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fileName;
+    private String objectKey;
+    private String originalFilename;
     private String bucketName;
     private String contentType;
     private Long size;
@@ -24,4 +26,7 @@ public class BlobMetaData {
     private String userType;
     private LocalDateTime uploadedAt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DocumentType documentType;
 }
