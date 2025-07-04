@@ -12,6 +12,7 @@ public class Chef {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "chef_id")
     private Long id;
     private String name;
     private String email;
@@ -21,5 +22,6 @@ public class Chef {
     private String languages;
     private long pricing;
     private double rating;
+    @Column(name = "is_available")
     private boolean isAvailable;
 }
