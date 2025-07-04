@@ -1,10 +1,7 @@
 package com.chefzy.booking.entity;
 
-
 import com.chefzy.booking.enums.BookingStatus;
 import com.chefzy.booking.enums.PaymentStatus;
-import com.chefzy.cateringmicroservice.entity.Caterer;
-import com.chefzy.chefmicroservice.entity.Chef;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,6 +42,5 @@ public class Booking {
 
     @Column(name = "caterer_id")
     private Long catererId;
-
 
 }

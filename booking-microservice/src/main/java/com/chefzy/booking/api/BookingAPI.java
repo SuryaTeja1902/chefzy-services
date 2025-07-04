@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface BookingAPI {
 
@@ -28,13 +27,13 @@ public interface BookingAPI {
     ResponseEntity<?> getCatererBookingById(@PathVariable("caterer_id") Long caterer_id) throws ValidationException;
 
     @GetMapping("/consumer/{consumer_id}/all")
-    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsbyConsumerId(@PathVariable("consumer_id") Long consumer_id) throws ValidationException;
+    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsByConsumerId(@PathVariable("consumer_id") Long consumer_id) throws ValidationException;
 
     @GetMapping("/chef/{chef_id}/all")
-    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsbyChefId(@PathVariable("chef_id") Long chef_id) throws ValidationException;
+    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsByChefId(@PathVariable("chef_id") Long chef_id) throws ValidationException;
 
     @GetMapping("/caterer/{caterer_id}/all")
-    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsbyCatererId(@PathVariable("caterer_id") Long caterer_id) throws ValidationException;
+    ResponseEntity<ArrayList<BookingResponseDTO>> getAllBookingsByCatererId(@PathVariable("caterer_id") Long caterer_id) throws ValidationException;
 
 
 }
