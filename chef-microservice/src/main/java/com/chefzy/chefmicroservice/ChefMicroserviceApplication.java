@@ -9,5 +9,4 @@ public class ChefMicroserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChefMicroserviceApplication.class, args);
     }
-
 }
